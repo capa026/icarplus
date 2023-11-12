@@ -7,6 +7,7 @@ function App() {
   const usersUrl = import.meta.env.VITE_LOCAL_USERS_DB_URL;
   const getData = async () => {
     try {
+      console.log('fetching');
       const response = await fetch(`${usersUrl}/${email}`);
       const json = await response.json();
       setUsers(json);
