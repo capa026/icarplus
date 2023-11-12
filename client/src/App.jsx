@@ -5,19 +5,20 @@ function App() {
   const [users, setUsers] = useState([]);
   const email = 'carlos@example.com';
   const usersUrl = import.meta.env.VITE_LOCAL_USERS_DB_URL;
-  console.log(usersUrl);
+
   const getData = async () => {
     console.log('fetching');
     try {
       const response = await fetch(`${usersUrl}/${email}`);
       const json = await response.json();
-      setUsers(json);
       console.log(json);
+      setUsers(json);
     } catch (error) {
       console.error(error);
     }
   };
-  useEffect(() => getData, []);
+
+  useEffect(() => getData(), []);
 
   if (!users) return 'Loading...';
   console.log(users);
