@@ -18,7 +18,7 @@ app.get('/users', async (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  res.send('Bienvenidoo');
+  res.send('Bienvenidoo FEATURES BRANCH');
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
