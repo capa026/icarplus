@@ -6,7 +6,7 @@ function App() {
   const email = 'carlos@example.com';
   const usersUrl = import.meta.env.VITE_LOCAL_USERS_DB_URL;
 
-  const getData = async () => {
+  const getData = async (e) => {
     try {
       const response = await fetch(`${usersUrl}/${email}`);
       const json = await response.json();
@@ -17,7 +17,9 @@ function App() {
     }
   };
 
-  useEffect(() => getData(), []);
+  useEffect(() => {
+    getData();
+  }, []);
 
   if (!users) return 'Loading...';
 
