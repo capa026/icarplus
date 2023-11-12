@@ -4,11 +4,13 @@ import { Navbar } from './components';
 function App() {
   const [users, setUsers] = useState([]);
   const email = 'carlos@example.com';
+  const usersUrl = import.meta.env.VITE_LOCAL_USERS_DB_URL;
   const getData = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/users/${email}`);
+      const response = await fetch(`${usersUrl}/${email}`);
       const json = await response.json();
       setUsers(json);
+      console.log(json);
     } catch (error) {
       console.error(error);
     }
