@@ -5,6 +5,7 @@ function App() {
   const [users, setUsers] = useState([]);
   const email = 'carlos@example.com';
   const usersUrl = import.meta.env.VITE_LOCAL_USERS_DB_URL;
+  console.log(usersUrl);
   const getData = async () => {
     console.log('fetching');
     try {
