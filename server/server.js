@@ -6,9 +6,12 @@ const app = express();
 const pool = require('./db');
 
 app.get('/users', async (req, res) => {
+  const email = 'carlos@example.com';
   try {
-    const users = await pool.query('SELECT * from users');
-    res.json(users.rows[0]);
+    const users = await pool.query('SELECT * from users WHERE email = $1', [
+      email,
+    ]);
+    res.json(users.rows);
   } catch (error) {
     console.error(error);
   }
