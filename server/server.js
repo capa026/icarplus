@@ -19,6 +19,6 @@ app.get('/', (req, res) => {
 
 app.get('/ping', async (req, res) => {
   const result = await pool.query('SELECT NOW()');
-  return result.json(result.rows[0]);
+  return res.json(result.rows[0]);
 });
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
