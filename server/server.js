@@ -7,6 +7,7 @@ const pool = require('./db');
 
 app.get('/users', async (req, res) => {
   const email = 'carlos@example.com';
+  const testVariable = 666;
   try {
     const users = await pool.query('SELECT * from users WHERE email = $1', [
       email,
