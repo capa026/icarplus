@@ -7,11 +7,10 @@ function App() {
   const usersUrl = import.meta.env.VITE_LOCAL_USERS_DB_URL;
 
   const getData = async () => {
-    console.log('fetching');
     try {
       const response = await fetch(`${usersUrl}/${email}`);
       const json = await response.json();
-      console.log(json);
+
       setUsers(json);
     } catch (error) {
       console.error(error);
@@ -21,7 +20,7 @@ function App() {
   useEffect(() => getData(), []);
 
   if (!users) return 'Loading...';
-  console.log(users);
+
   return (
     <div>
       <Navbar />
