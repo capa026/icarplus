@@ -11,7 +11,7 @@ app.get('/users', async (req, res) => {
     const users = await pool.query('SELECT * from users WHERE email = $1', [
       email,
     ]);
-    res.json(users.rows[0]);
+    res.json(users.rows);
   } catch (error) {
     console.error(error);
   }
