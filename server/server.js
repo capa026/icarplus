@@ -2,11 +2,15 @@ const express = require('express');
 require('dotenv').config();
 
 const PORT = process.env.PORT ?? 8000;
+const cors = require('cors');
 const app = express();
 const pool = require('./db');
 
-app.get('/users', async (req, res) => {
-  const email = 'carlos@example.com';
+app.use(cors());
+
+app.get('/users/:email', async (req, res) => {
+  const { email } = req.params;
+  console.log(email);
   try {
     const users = await pool.query('SELECT * from users WHERE email = $1', [
       email,
