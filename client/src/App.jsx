@@ -8,10 +8,11 @@ function App() {
 
   const getData = async (e) => {
     try {
-      const response = await fetch(`${usersUrl}/${email}`);
+      const response = await fetch(`${usersUrl}`);
       const json = await response.json();
 
       setUsers(json);
+      console.log(json);
     } catch (error) {
       console.error(error);
     }
@@ -28,8 +29,8 @@ function App() {
       <Navbar />
       <div>
         {users.map((user) => (
-          <h1 key={user.name}>
-            Name: {user.name} || Email: {user.email}
+          <h1 key={user.id}>
+            Name: {user.first_name} || Email: {user.email}
           </h1>
         ))}
       </div>
