@@ -12,6 +12,7 @@ function App() {
       const json = await response.json();
 
       setUsers(json);
+      console.log(json);
     } catch (error) {
       console.error(error);
     }
@@ -22,7 +23,7 @@ function App() {
   }, []);
 
   if (!users) return 'Loading...';
-  console.log(users);
+
   return (
     <div>
       <Navbar />

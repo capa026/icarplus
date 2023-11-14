@@ -23,7 +23,7 @@ app.get('/users/:email', async (req, res) => {
 app.get('/users', async (req, res) => {
   try {
     const users = await pool.query('SELECT * from users');
-    console.log(res.json(users.rows));
+    res.json(users.rows);
   } catch (error) {
     console.error(error);
   }
