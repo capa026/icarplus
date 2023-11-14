@@ -20,6 +20,14 @@ app.get('/users/:email', async (req, res) => {
     console.error(error);
   }
 });
+app.get('/users', async (req, res) => {
+  try {
+    const users = await pool.query('SELECT * from users');
+    console.log(res.json(users.rows));
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 app.get('/', (req, res) => {
   res.send('Bienvenidoo');
