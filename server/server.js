@@ -10,7 +10,6 @@ app.use(cors());
 
 app.get('/users/:email', async (req, res) => {
   const { email } = req.params;
-  console.log(email);
   try {
     const users = await pool.query('SELECT * from users WHERE email = $1', [
       email,

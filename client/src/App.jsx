@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Navbar } from './components';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Navbar, Sidebar } from './components';
+import { Feed, Cars, AutoParts, AutoMechanics, Clients } from './pages';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -12,7 +14,6 @@ function App() {
       const json = await response.json();
 
       setUsers(json);
-      console.log(json);
     } catch (error) {
       console.error(error);
     }
@@ -25,16 +26,21 @@ function App() {
   if (!users) return 'Loading...';
 
   return (
-    <div>
+    <BrowserRouter>
       <Navbar />
-      <div>
-        {users.map((user) => (
-          <h1 key={user.id}>
-            Name: {user.first_name} || Email: {user.email}
-          </h1>
-        ))}
+      <div className="routes--container">
+        <Sidebar />
+        <div className="routes">
+          <Routes>
+            <Route path="/" exact element={<Feed />} />
+            <Route path="/cars" element={<Cars />} />
+            <Route path="/auto_parts" element={<AutoParts />} />
+            <Route path="/auto_mechanics" element={<AutoMechanics />} />
+            <Route path="/clients" element={<Clients users={users} />} />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 
