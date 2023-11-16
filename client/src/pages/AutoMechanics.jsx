@@ -5,7 +5,19 @@ const AutoMechanics = () => {
   );
 
   if (isLoading) return 'Loading...';
-  console.log(data);
-  return <div>AutoMechanics</div>;
+
+  return (
+    <div className="auto__mechanics">
+      {data.map((person) => (
+        <div key={person.id} className="auto__mechanic">
+          <img src={person.profile_picture} alt="" />
+          <h3>
+            {person.first_name} {person.last_name}
+          </h3>
+          <span>{person.description}</span>
+        </div>
+      ))}
+    </div>
+  );
 };
 export default AutoMechanics;

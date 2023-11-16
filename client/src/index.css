@@ -31,6 +31,7 @@
 /*SIDEBAR*/
 .sidebar {
   display: flex;
+  justify-content: center;
   width: 100%;
   background: #000;
   border-radius: 4px;
@@ -60,7 +61,6 @@
 /********/
 .routes {
   width: 100%;
-  height: 100vh;
   color: black;
   padding: 0.5rem;
   background: white;
@@ -75,6 +75,30 @@
   gap: 1rem;
 }
 
+/*AUTO MECHANICS*/
+.auto__mechanics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  gap: 1rem;
+}
+.auto__mechanic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+  border-radius: 4px;
+  border: 2px solid black;
+  box-shadow: 5px 5px 15px 1px rgba(0, 0, 0, 0.87);
+  text-align: center;
+  padding: 0.5rem;
+}
+.auto__mechanic img {
+  width: 80%;
+}
+/****************/
+
 @media (500px <= width) {
   .routes--container {
     flex-direction: row;
@@ -82,18 +106,30 @@
   .sidebar {
     width: 20%;
     flex-direction: column;
+    height: 30vh;
   }
-  .sidebar > *:not(:last-child) {
-    border-right: 0;
+  .sidebar > * {
+    border-right: none !important;
     border-bottom: 1px solid white;
   }
   .routes {
     width: 80%;
+  }
+  .auto__mechanics {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (600px >= width) {
+  .auto__mechanics {
+    grid-template-columns: 1fr 1fr;
   }
 }
 @media (1000px <= width) {
   .routes--container {
     max-width: 1000px;
     margin: 1rem auto;
+  }
+  .auto__mechanics {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
