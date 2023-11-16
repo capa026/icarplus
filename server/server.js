@@ -28,7 +28,7 @@ app.get('/users', async (req, res) => {
   }
 });
 
-app.get('/auto_mechanic', async (req, res) => {
+app.get('/auto_mechanics', async (req, res) => {
   try {
     const auto_mechanics = await pool.query('SELECT * from auto_mechanics');
     res.json(auto_mechanics.rows);
