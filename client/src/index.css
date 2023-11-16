@@ -91,3 +91,9 @@
     width: 80%;
   }
 }
+@media (1000px <= width) {
+  .routes--container {
+    max-width: 1000px;
+    margin: 1rem auto;
+  }
+}
