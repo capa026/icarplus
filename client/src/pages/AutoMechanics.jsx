@@ -1,5 +1,5 @@
-import { useFetch } from '../utils/useFetch';
 const AutoMechanics = ({ auto_mechanics }) => {
+  if (!auto_mechanics) return 'Loading...';
   return (
     <div className="auto__mechanics">
       {auto_mechanics.map((person) => (
