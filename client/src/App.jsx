@@ -4,12 +4,14 @@ import { Navbar, Sidebar } from './components';
 import { Feed, Cars, AutoParts, AutoMechanics, Clients } from './pages';
 import { useFetch } from './utils/useFetch';
 function App() {
-  const [users, setUsers] = useState([]);
   const email = 'carlos@example.com';
   const usersUrl = import.meta.env.VITE_LOCAL_USERS_DB_URL;
-  const { data, isLoading } = useFetch(usersUrl);
+  const autoMechanicsUrl = import.meta.env.VITE_LOCAL_AUTO_MECHANICS_DB_URL;
+  const { data: users, isLoading } = useFetch(usersUrl);
+  const { data: auto_mechanics, isLoading: mechLoading } =
+    useFetch(autoMechanicsUrl);
 
-  if (isLoading) return 'Loading...';
+  if (isLoading && mechLoading) return 'Loading...';
 
   return (
     <BrowserRouter>
@@ -22,8 +24,11 @@ function App() {
             <Route path="/" exact element={<Feed />} />
             <Route path="/cars" element={<Cars />} />
             <Route path="/auto_parts" element={<AutoParts />} />
-            <Route path="/auto_mechanics" element={<AutoMechanics />} />
-            <Route path="/clients" element={<Clients users={data} />} />
+            <Route
+              path="/auto_mechanics"
+              element={<AutoMechanics auto_mechanics={auto_mechanics} />}
+            />
+            <Route path="/clients" element={<Clients users={users} />} />
           </Routes>
         </div>
       </div>

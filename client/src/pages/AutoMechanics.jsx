@@ -1,14 +1,8 @@
 import { useFetch } from '../utils/useFetch';
-const AutoMechanics = () => {
-  const { data, isLoading } = useFetch(
-    import.meta.env.VITE_LOCAL_AUTO_MECHANICS_DB_URL
-  );
-
-  if (isLoading) return 'Loading...';
-
+const AutoMechanics = ({ auto_mechanics }) => {
   return (
     <div className="auto__mechanics">
-      {data.map((person) => (
+      {auto_mechanics.map((person) => (
         <div key={person.id} className="auto__mechanic">
           <img src={person.profile_picture} alt="" />
           <h3>
