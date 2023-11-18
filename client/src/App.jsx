@@ -7,8 +7,8 @@ import { ClimbingBoxLoader } from 'react-spinners';
 
 function App() {
   const email = 'carlos@example.com';
-  const usersUrl = import.meta.env.VITE_LOCAL_USERS_DB_URL;
-  const autoMechanicsUrl = import.meta.env.VITE_LOCAL_AUTO_MECHANICS_DB_URL;
+  const usersUrl = import.meta.env.VITE_LOCAL_DB_URL + 'clients';
+  const autoMechanicsUrl = import.meta.env.VITE_LOCAL_DB_URL + 'auto_mechanics';
   const { data: users, isLoading } = useFetch(usersUrl);
   const { data: auto_mechanics, isLoading: mechLoading } =
     useFetch(autoMechanicsUrl);
