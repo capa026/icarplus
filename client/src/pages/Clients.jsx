@@ -1,12 +1,11 @@
+import { PlusCircleOutlined } from '@ant-design/icons';
+
 const Clients = ({ users }) => {
   if (!users) return 'Loading...';
   return (
-    <div className="">
-      {users.map((user) => (
-        <div key={user.id} className="">
-          ID: {user.id} || Email: {user.email}
-        </div>
-      ))}
+    <div className="clients">
+      Add User
+      <PlusCircleOutlined style={{ fontSize: '2rem' }} />
     </div>
   );
 };

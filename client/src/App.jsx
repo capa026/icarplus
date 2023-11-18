@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar, Sidebar } from './components';
 import { Feed, Cars, AutoParts, AutoMechanics, Clients } from './pages';
 import { useFetch } from './utils/useFetch';
+import { ClimbingBoxLoader } from 'react-spinners';
+
 function App() {
   const email = 'carlos@example.com';
   const usersUrl = import.meta.env.VITE_LOCAL_USERS_DB_URL;
@@ -11,7 +13,20 @@ function App() {
   const { data: auto_mechanics, isLoading: mechLoading } =
     useFetch(autoMechanicsUrl);
 
-  if (isLoading && mechLoading) return 'Loading...';
+  if (isLoading && mechLoading)
+    return (
+      <div
+        style={{
+          width: '100%',
+          height: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <ClimbingBoxLoader color="rgba(255, 255, 255, 1)" size={12} />
+      </div>
+    );
 
   return (
     <BrowserRouter>
