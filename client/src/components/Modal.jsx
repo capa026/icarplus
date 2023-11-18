@@ -1,4 +1,7 @@
+import { useState } from 'react';
+
 const Modal = () => {
-  return <div>Modal</div>;
+  const [data, setData] = useState(null);
+  return <div className="modalContainer">Modal</div>;
 };
 export default Modal;

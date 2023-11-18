@@ -8,21 +8,10 @@ const pool = require('./db');
 
 app.use(cors());
 
-app.get('/users/:email', async (req, res) => {
-  const { email } = req.params;
+app.get('/clients', async (req, res) => {
   try {
-    const users = await pool.query('SELECT * from users WHERE email = $1', [
-      email,
-    ]);
-    res.json(users.rows);
-  } catch (error) {
-    console.error(error);
-  }
-});
-app.get('/users', async (req, res) => {
-  try {
-    const users = await pool.query('SELECT * from users');
-    res.json(users.rows);
+    const clients = await pool.query('SELECT * from clients');
+    res.json(clients.rows);
   } catch (error) {
     console.error(error);
   }
