@@ -1,6 +1,14 @@
+import { useState } from 'react';
+import { Modal } from '../components';
 import AddButton from '../components/AddButton';
 
 const Clients = ({ users }) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleModal = () => {
+    setShowModal(!showModal);
+  };
+
   if (!users) return 'Loading...';
   return (
     <div className="clients">
@@ -18,8 +26,13 @@ const Clients = ({ users }) => {
         <span style={{ fontSize: '1.2rem', fontWeight: '600' }}>
           Lista de clientes
         </span>
-        <AddButton title={'Añadir Cliente'} btnSize={'1.5rem'} />
+        <AddButton
+          title={'Añadir Cliente'}
+          btnSize={'1.5rem'}
+          click={handleModal}
+        />
       </div>
+      <Modal showModal={showModal} setShowModal={setShowModal} />
     </div>
   );
 };
