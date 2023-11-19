@@ -13,10 +13,23 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get('/', (req, res) => {
+  res.send('Bienvenidoo');
+});
+
 app.get('/clients', async (req, res) => {
   try {
     const clients = await pool.query('SELECT * from clients');
     res.json(clients.rows);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+app.get('/auto_parts', async (req, res) => {
+  try {
+    const auto_parts = await pool.query('SELECT * from auto_parts');
+    res.json(auto_parts.rows);
   } catch (error) {
     console.error(error);
   }
@@ -38,10 +51,6 @@ app.get('/cars', async (req, res) => {
   } catch (error) {
     console.error(error);
   }
-});
-
-app.get('/', (req, res) => {
-  res.send('Bienvenidoo');
 });
 
 //Add client to DB
@@ -72,7 +81,6 @@ app.post('/clients', async (req, res) => {
       ]
     );
 
-    console.log(r);
     await pool.query(
       `INSERT INTO cars(id, client_name, model, type, car_year, auto_part_assigned, description) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
       [
@@ -85,6 +93,7 @@ app.post('/clients', async (req, res) => {
         description,
       ]
     );
+    res.json(r);
   } catch (error) {
     console.error(error);
   }

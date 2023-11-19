@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Modal, ClientsContainer } from '../components';
 import AddButton from '../components/AddButton';
 
-const Clients = ({ clients }) => {
+const Clients = ({ clients, getClients }) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleModal = () => {
@@ -34,7 +34,11 @@ const Clients = ({ clients }) => {
         />
       </div>
       <ClientsContainer clients={clients} />
-      <Modal showModal={showModal} setShowModal={setShowModal} />
+      <Modal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        getClients={getClients}
+      />
     </div>
   );
 };
