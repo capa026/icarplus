@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Modal, ClientsContainer } from '../components';
 import AddButton from '../components/AddButton';
 
 const Clients = ({ clients, getClients }) => {
   const [showModal, setShowModal] = useState(false);
 
+  useEffect(() => getClients, []);
   const handleModal = () => {
     setShowModal(!showModal);
   };

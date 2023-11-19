@@ -22,7 +22,7 @@ function App() {
     }
   };
 
-  useEffect(() => getClients, [clients]);
+  useEffect(() => getClients, []);
 
   if (!clients && mechLoading)
     return (
