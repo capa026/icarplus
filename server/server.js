@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
 });
 
 //Add client to DB
-app.post('/clients', (req, res) => {
+app.post('/clients', async (req, res) => {
   const id = uuidv4();
   const {
     first_name,
@@ -58,7 +58,7 @@ app.post('/clients', (req, res) => {
   } = req.body;
 
   try {
-    pool.query(
+    await pool.query(
       `INSERT INTO clients(id, first_name, last_name, car_model, car_type, car_year, auto_part, description) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
       [
         id,
@@ -71,8 +71,8 @@ app.post('/clients', (req, res) => {
         description,
       ]
     );
-    /*
-    pool.query(
+
+    await pool.query(
       `INSERT INTO cars(id, client_name, model, type, year, auto_part_assigned, description) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
       [
         id,
@@ -83,7 +83,7 @@ app.post('/clients', (req, res) => {
         auto_part,
         description,
       ]
-    );*/
+    );
   } catch (error) {
     console.error(error);
   }
