@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import { Modal } from '../components';
+import { Modal, ClientsContainer } from '../components';
 import AddButton from '../components/AddButton';
 
-const Clients = ({ users }) => {
+const Clients = ({ clients }) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleModal = () => {
     setShowModal(!showModal);
   };
 
-  if (!users) return 'Loading...';
+  if (!clients) return 'Loading...';
+
   return (
     <div className="clients">
       <div
@@ -32,6 +33,7 @@ const Clients = ({ users }) => {
           click={handleModal}
         />
       </div>
+      <ClientsContainer clients={clients} />
       <Modal showModal={showModal} setShowModal={setShowModal} />
     </div>
   );

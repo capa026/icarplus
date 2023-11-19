@@ -151,7 +151,7 @@
 }
 .modal {
   background-color: white;
-  width: 70%;
+  width: 90%;
   height: 80%;
   background-color: #242424;
   border-radius: 4px;
@@ -184,7 +184,7 @@
 .modal--content form {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 80%;
   gap: 1rem;
 }
 .modal--content form input {
@@ -194,6 +194,40 @@
   padding: 1rem;
 }
 /*********/
+
+/*CLIENTS CONTAINER*/
+.clients--container {
+  overflow-x: auto;
+}
+.clients--container table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid black;
+}
+.clients--container th,
+.clients--container td {
+  padding: 8px;
+  text-align: left;
+  text-align: center;
+}
+.clients--container td {
+  cursor: pointer;
+  border: 1px solid black;
+}
+.clients--container th {
+  background-color: black;
+  color: white;
+  border-bottom: 1px solid black;
+}
+.clients--container tr:nth-child(even) {
+  background-color: rgb(182, 182, 182);
+}
+.clients--container tr.client:hover {
+  background-color: #242424;
+  color: white;
+}
+/*-----------------*/
+
 @media (500px <= width) {
   .routes--container {
     flex-direction: row;
@@ -215,6 +249,17 @@
   }
   .selected {
     padding-left: 1.5rem;
+  }
+}
+
+@media (700px <= width) {
+  .modal {
+    width: 70%;
+    overflow-y: auto;
+    padding-bottom: 1rem;
+  }
+  .modal--content form {
+    width: 50%;
   }
 }
 @media (600px >= width) {

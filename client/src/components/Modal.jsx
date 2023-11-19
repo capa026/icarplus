@@ -6,7 +6,6 @@ const Modal = ({ showModal, setShowModal }) => {
   const editMode = mode === 'edit' ? true : false;
 
   const [data, setData] = useState({
-    id: '',
     first_name: '',
     last_name: '',
     car_model: '',
@@ -14,6 +13,22 @@ const Modal = ({ showModal, setShowModal }) => {
     car_year: '',
     auto_part: '',
   });
+
+  const postData = async () => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_LOCAL_DB_URL + 'clients',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -90,7 +105,7 @@ const Modal = ({ showModal, setShowModal }) => {
               name="auto_part"
               onChange={handleChange}
             />
-            <input type="submit" value="AGREGAR" />
+            <input type="submit" value="AGREGAR" onClick={postData} />
           </form>
         </div>
       </div>
