@@ -6,9 +6,14 @@ const cors = require('cors');
 const app = express();
 const pool = require('./db');
 const { v4: uuidv4 } = require('uuid');
+const bodyParser = require('body-parser');
 
 app.use(cors());
-
+app.use(express.json());
+/*
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+*/
 app.get('/clients', async (req, res) => {
   try {
     const clients = await pool.query('SELECT * from clients');
@@ -27,6 +32,15 @@ app.get('/auto_mechanics', async (req, res) => {
   }
 });
 
+app.get('/cars', async (req, res) => {
+  try {
+    const cars = await pool.query('SELECT * from cars');
+    res.json(cars.rows);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 app.get('/', (req, res) => {
   res.send('Bienvenidoo');
 });
@@ -34,13 +48,42 @@ app.get('/', (req, res) => {
 //Add client to DB
 app.post('/clients', (req, res) => {
   const id = uuidv4();
-  const { first_name, last_name, car_model, car_type, car_year, auto_part } =
-    req.body;
-  console.log(req.body);
+  const {
+    first_name,
+    last_name,
+    car_model,
+    car_type,
+    car_year,
+    auto_part,
+    description,
+  } = req.body;
+
   try {
     pool.query(
-      `INSERT INTO clients(id, first_name, last_name, car_model, car_type, car_year, auto_part) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-      [id, first_name, last_name, car_model, car_type, car_year, auto_part]
+      `INSERT INTO clients(id, first_name, last_name, car_model, car_type, car_year, auto_part, description) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+      [
+        id,
+        first_name,
+        last_name,
+        car_model,
+        car_type,
+        car_year,
+        auto_part,
+        description,
+      ]
+    );
+
+    pool.query(
+      `INSERT INTO cars(id, client_name, last_name, model, type, year, auto_part_assigned, description) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+      [
+        id,
+        first_name + ' ' + last_name,
+        car_model,
+        car_type,
+        car_year,
+        auto_part,
+        description,
+      ]
     );
   } catch (error) {
     console.error(error);
