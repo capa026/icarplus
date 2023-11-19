@@ -12,10 +12,13 @@ const Modal = ({ showModal, setShowModal }) => {
     car_type: '',
     car_year: '',
     auto_part: '',
+    description: '',
   });
 
-  const postData = async () => {
+  const postData = async (e) => {
+    e.preventDefault();
     try {
+      setShowModal(false);
       const response = await fetch(
         import.meta.env.VITE_LOCAL_DB_URL + 'clients',
         {
@@ -24,7 +27,6 @@ const Modal = ({ showModal, setShowModal }) => {
           body: JSON.stringify(data),
         }
       );
-      console.log(response);
     } catch (error) {
       console.error(error);
     }
@@ -103,6 +105,13 @@ const Modal = ({ showModal, setShowModal }) => {
               placeholder="Auto Part Assigned"
               value={data.auto_part}
               name="auto_part"
+              onChange={handleChange}
+            />
+            <input
+              maxLength={255}
+              placeholder="Description"
+              value={data.description}
+              name="description"
               onChange={handleChange}
             />
             <input type="submit" value="AGREGAR" onClick={postData} />

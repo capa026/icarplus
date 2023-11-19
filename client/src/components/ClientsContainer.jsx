@@ -19,7 +19,7 @@ const ClientsContainer = ({ clients }) => {
               <td>
                 <Barcode
                   value={client.id}
-                  width={1}
+                  width={0.3}
                   height={40}
                   displayValue={false}
                 />
