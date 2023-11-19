@@ -59,7 +59,7 @@ app.post('/clients', (req, res) => {
 
   try {
     pool.query(
-      `INSERT INTO clients(id, first_name, last_name, car_model, car_type, car_year, auto_part, description) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+      `INSERT INTO clients(id, first_name, last_name, car_model, car_type, car_year, auto_part, description) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
       [
         id,
         first_name,
