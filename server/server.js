@@ -58,7 +58,7 @@ app.post('/clients', async (req, res) => {
   } = req.body;
 
   try {
-    await pool.query(
+    const r = await pool.query(
       `INSERT INTO clients(id, first_name, last_name, car_model, car_type, car_year, auto_part, description) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
       [
         id,
@@ -72,6 +72,7 @@ app.post('/clients', async (req, res) => {
       ]
     );
 
+    console.log(r);
     await pool.query(
       `INSERT INTO cars(id, client_name, model, type, car_year, auto_part_assigned, description) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
       [
