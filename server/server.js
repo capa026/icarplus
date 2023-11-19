@@ -71,7 +71,7 @@ app.post('/clients', (req, res) => {
         description,
       ]
     );
-
+    /*
     pool.query(
       `INSERT INTO cars(id, client_name, model, type, year, auto_part_assigned, description) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
       [
@@ -83,7 +83,7 @@ app.post('/clients', (req, res) => {
         auto_part,
         description,
       ]
-    );
+    );*/
   } catch (error) {
     console.error(error);
   }
