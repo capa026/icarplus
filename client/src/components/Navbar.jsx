@@ -1,8 +1,6 @@
+import { CarOutlined } from '@ant-design/icons';
+
 const Navbar = () => {
-  return (
-    <div className="navbar">
-      <h1>IcarPlus corp.</h1>
-    </div>
-  );
+  return <div className="navbar">Navbar</div>;
 };
 export default Navbar;
