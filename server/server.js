@@ -9,11 +9,10 @@ const { v4: uuidv4 } = require('uuid');
 const bodyParser = require('body-parser');
 
 app.use(cors());
-app.use(express.json());
-/*
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-*/
+
 app.get('/clients', async (req, res) => {
   try {
     const clients = await pool.query('SELECT * from clients');
