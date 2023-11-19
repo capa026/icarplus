@@ -9,7 +9,7 @@ const Clients = ({ clients, getClients }) => {
     setShowModal(!showModal);
   };
 
-  if (!clients) return 'Loading...';
+  //if (!clients) return 'Loading...';
 
   return (
     <div className="clients">
