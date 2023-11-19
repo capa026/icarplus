@@ -6,6 +6,7 @@ const Cars = () => {
 
   if (isLoading) return '';
 
+  console.log(cars);
   return (
     <div className="clients--container">
       <table>
