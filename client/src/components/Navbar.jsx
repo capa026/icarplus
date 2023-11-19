@@ -1,7 +1,6 @@
 import { CarOutlined } from '@ant-design/icons';
 
 const Navbar = () => {
-  return <div className="navbar">Navbar</div>;
   return (
     <div className="navbar">
       <h1>
