@@ -21,12 +21,12 @@ const Cars = () => {
           </tr>
           {cars.map((car) => (
             <tr className="client" key={car.id}>
-              <td>{client.client_name}</td>
-              <td>{client.model}</td>
-              <td>{client.type}</td>
-              <td>{client.car_year}</td>
-              <td>{client.auto_part_assigned}</td>
-              <td>{client.description}</td>
+              <td>{car.client_name}</td>
+              <td>{car.model}</td>
+              <td>{car.type}</td>
+              <td>{car.car_year}</td>
+              <td>{car.auto_part_assigned}</td>
+              <td>{car.description}</td>
             </tr>
           ))}
         </tbody>
