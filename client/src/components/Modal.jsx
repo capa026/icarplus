@@ -1,7 +1,7 @@
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 
-const Modal = ({ showModal, setShowModal }) => {
+const Modal = ({ showModal, setShowModal, getClients }) => {
   const mode = 'create';
   const editMode = mode === 'edit' ? true : false;
 
@@ -18,7 +18,6 @@ const Modal = ({ showModal, setShowModal }) => {
   const postData = async (e) => {
     e.preventDefault();
     try {
-      setShowModal(false);
       const response = await fetch(
         import.meta.env.VITE_LOCAL_DB_URL + 'clients',
         {
@@ -27,6 +26,10 @@ const Modal = ({ showModal, setShowModal }) => {
           body: JSON.stringify(data),
         }
       );
+      if (response.status === 200) {
+        setShowModal(false);
+        getClients();
+      }
     } catch (error) {
       console.error(error);
     }

@@ -6,14 +6,25 @@ import { useFetch } from './utils/useFetch';
 import { ClimbingBoxLoader } from 'react-spinners';
 
 function App() {
-  const email = 'carlos@example.com';
+  const [clients, setClients] = useState(null);
   const clientsUrl = import.meta.env.VITE_LOCAL_DB_URL + 'clients';
   const autoMechanicsUrl = import.meta.env.VITE_LOCAL_DB_URL + 'auto_mechanics';
-  const { data: clients, isLoading } = useFetch(clientsUrl);
   const { data: auto_mechanics, isLoading: mechLoading } =
     useFetch(autoMechanicsUrl);
 
-  if (isLoading && mechLoading)
+  const getClients = async () => {
+    try {
+      const response = await fetch(clientsUrl);
+      const json = await response.json();
+      setClients(json);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => getClients, []);
+
+  if (!clients && mechLoading)
     return (
       <div
         style={{
@@ -43,7 +54,10 @@ function App() {
               path="/auto_mechanics"
               element={<AutoMechanics auto_mechanics={auto_mechanics} />}
             />
-            <Route path="/clients" element={<Clients clients={clients} />} />
+            <Route
+              path="/clients"
+              element={<Clients clients={clients} getClients={getClients} />}
+            />
           </Routes>
         </div>
       </div>

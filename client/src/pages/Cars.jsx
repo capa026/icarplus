@@ -1,12 +1,18 @@
+import { useState, useEffect } from 'react';
 import { useFetch } from '../utils/useFetch';
 
 const Cars = () => {
+  const [cars, setCars] = useState(null);
   const carsUrl = import.meta.env.VITE_LOCAL_DB_URL + 'cars';
-  const { data: cars, isLoading } = useFetch(carsUrl);
+  const { data, isLoading } = useFetch(carsUrl);
 
-  if (isLoading) return '';
+  useEffect(() => {
+    if (data) {
+      setCars(data);
+    }
+  }, [data]);
+  if (!cars) return '';
 
-  console.log(cars);
   return (
     <div className="clients--container">
       <table>
