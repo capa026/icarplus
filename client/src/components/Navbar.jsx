@@ -5,7 +5,7 @@ const Navbar = () => {
     <div className="navbar">
       <h1>
         <CarOutlined />
-        IcarPlus CORP.
+        IcarPlus CORP
       </h1>
     </div>
   );
