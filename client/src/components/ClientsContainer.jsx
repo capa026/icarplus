@@ -14,7 +14,7 @@ const ClientsContainer = ({ clients }) => {
             <th>Año</th>
             <th>Repuesto</th>
           </tr>
-          {clients.map((client) => (
+          {clients?.map((client) => (
             <tr className="client" key={client.id}>
               <td>
                 <Barcode
