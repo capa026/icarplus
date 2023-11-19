@@ -58,7 +58,7 @@ app.post('/clients', (req, res) => {
   } = req.body;
 
   try {
-    pool.query(
+    const req1 = pool.query(
       `INSERT INTO clients(id, first_name, last_name, car_model, car_type, car_year, auto_part, description) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
       [
         id,
@@ -71,6 +71,7 @@ app.post('/clients', (req, res) => {
         description,
       ]
     );
+    console.log(req1);
     /*
     pool.query(
       `INSERT INTO cars(id, client_name, last_name, model, type, year, auto_part_assigned, description) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
