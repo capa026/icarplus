@@ -5,7 +5,8 @@ import AddButton from '../components/AddButton';
 const Clients = ({ clients, getClients }) => {
   const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => getClients, []);
+  console.log(clients);
+
   const handleModal = () => {
     setShowModal(!showModal);
   };
